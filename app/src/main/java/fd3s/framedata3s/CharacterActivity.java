@@ -1,7 +1,6 @@
 package fd3s.framedata3s;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
@@ -17,6 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class CharacterActivity extends ActionBarActivity {
+
+    /* this method should probably go somewhere else. */
+
     public static JSONObject loadJSONFile (String filename, Context context) {
          AssetManager manager = context.getAssets();
 
@@ -47,12 +49,9 @@ public class CharacterActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        Intent myIntent = getIntent();
-        int characterId = myIntent.getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
-
-        this.setTitle(ResourceHelper.FileNames[characterId]);
-
-        JSONObject json = loadJSONFile(ResourceHelper.FileNames[characterId] + ".txt", this);
+        int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        this.setTitle(ResourceHelper.CharacterNames[characterId]);
+        JSONObject json = loadJSONFile(ResourceHelper.CharacterNames[characterId] + ".txt", this);
 
         if (json != null) {
             TextView tv = (TextView)findViewById(R.id.character_json_text);

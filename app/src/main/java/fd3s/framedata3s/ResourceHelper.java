@@ -1,9 +1,11 @@
 package fd3s.framedata3s;
 
-/**
- * Created by Michael on 04/01/2015.
- */
 public class ResourceHelper {
+
+    /*Note that ordering of characters in ThumbIds and CharacterNames
+     are the same at the moment. Might be worth pairing these values in a
+     separate class*/
+
     public static final Integer[] ThumbIds = {
             R.drawable.gouki_face, R.drawable.yun_face,
             R.drawable.ryu_face, R.drawable.urien_face,
@@ -17,7 +19,7 @@ public class ResourceHelper {
             R.drawable.yang_face, R.drawable.gill_face
     };
 
-    public static final String[] FileNames = {
+    public static final String[] CharacterNames = {
             "Gouki", "Yun",
             "Ryu", "Urien",
             "Remy", "Oro",
@@ -33,4 +35,6 @@ public class ResourceHelper {
     public static enum ResourceIds {
         CHARACTER_ID
     }
+
+    public static final String SelectScreenTitle = "SF3:3S Frame Data";
 }

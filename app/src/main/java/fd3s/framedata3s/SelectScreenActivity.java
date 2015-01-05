@@ -17,7 +17,7 @@ public class SelectScreenActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.setTitle("SF3:3S Frame Data");
+        this.setTitle(ResourceHelper.SelectScreenTitle);
 
         GridView gridview = (GridView) findViewById(R.id.gridview);
         gridview.setAdapter(new SelectScreenImageAdapter(this));
