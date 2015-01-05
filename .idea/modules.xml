@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FrameData3S.iml" filepath="$PROJECT_DIR$/FrameData3S.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/third-strike-frame-data-app.iml" filepath="$PROJECT_DIR$/third-strike-frame-data-app.iml" />
     </modules>
   </component>
 </project>
