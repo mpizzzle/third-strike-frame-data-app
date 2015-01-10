@@ -9,39 +9,42 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import fd3s.framedata3s.sdo.CharSDO;
 
 public class CharacterActivity extends ActionBarActivity {
 
     /* this method should probably go somewhere else. */
 
-    public static JSONObject loadJSONFile (String filename, Context context) {
+    public static CharSDO getCharDataFromFile (String filename, Context context) {
          AssetManager manager = context.getAssets();
 
         byte[] fileInput = null;
+        String sJson = "";
+        CharSDO charSDO = new CharSDO();
 
         try {
             InputStream file = manager.open(filename);
             fileInput = new byte[file.available()];
             file.read(fileInput);
             file.close();
+            sJson = new String(fileInput);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        JSONObject json = null;
-
         try {
-            json = new JSONObject(new String(fileInput));
-        } catch (JSONException e) {
+            Gson gson = new Gson();
+            charSDO = gson.fromJson(sJson, CharSDO.class);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return json;
+        return charSDO;
     }
 
     @Override
@@ -51,11 +54,11 @@ public class CharacterActivity extends ActionBarActivity {
 
         int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId]);
-        JSONObject json = loadJSONFile(ResourceHelper.CharacterNames[characterId] + ".txt", this);
+        CharSDO charSDO = getCharDataFromFile(ResourceHelper.CharacterNames[characterId] + ".txt", this);
 
-        if (json != null) {
+        if (charSDO != null) {
             TextView tv = (TextView)findViewById(R.id.character_json_text);
-            tv.setText(json.toString());
+            tv.setText(charSDO.normals.get(0).name);
             tv.setTextColor(Color.WHITE);
             tv.setBackgroundColor(Color.argb(128, 0, 0, 0));
         }
