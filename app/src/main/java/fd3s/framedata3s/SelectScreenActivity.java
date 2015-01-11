@@ -24,7 +24,7 @@ public class SelectScreenActivity extends ActionBarActivity {
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent myIntent = new Intent(ref, CharacterActivity.class);
+                Intent myIntent = new Intent(ref, ShowNormalsActivity.class);
                 myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), position);
                 startActivity(myIntent);
             }

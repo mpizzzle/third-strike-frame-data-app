@@ -33,7 +33,8 @@ public class ResourceHelper {
     };
 
     public static enum ResourceIds {
-        CHARACTER_ID
+        CHARACTER_ID,
+        MOVE_ID
     }
 
     public static final String SelectScreenTitle = "SF3:3S Frame Data";

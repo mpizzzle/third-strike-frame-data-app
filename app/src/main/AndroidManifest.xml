@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CharacterActivity"
+            android:name=".ShowNormalsActivity"
             android:label="@string/title_activity_character" >
         </activity>
     </application>
