@@ -25,6 +25,10 @@
             android:label="@string/title_activity_character" >
         </activity>
         <activity
+            android:name=".moves.normals.ShowNormalDetailActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
             android:name=".moves.specials.ShowSpecialsActivity"
             android:label="@string/title_activity_character" >
         </activity>
