@@ -1,4 +1,4 @@
-package fd3s.framedata3s;
+package fd3s.framedata3s.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
+import fd3s.framedata3s.utils.ResourceHelper;
 
 public class SelectScreenImageAdapter extends BaseAdapter {
     private Context myContext;

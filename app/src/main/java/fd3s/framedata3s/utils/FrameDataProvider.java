@@ -1,4 +1,4 @@
-package fd3s.framedata3s;
+package fd3s.framedata3s.utils;
 
 import android.content.Context;
 import android.content.res.AssetManager;

@@ -1,4 +1,4 @@
-package fd3s.framedata3s;
+package fd3s.framedata3s.moves.normals;
 
 import java.util.ArrayList;
 
@@ -13,6 +13,10 @@ import android.widget.TextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
+import fd3s.framedata3s.utils.FrameDataProvider;
+import fd3s.framedata3s.R;
+import fd3s.framedata3s.utils.ResourceHelper;
 import fd3s.framedata3s.sdo.CharSDO;
 
 public class ShowNormalsActivity extends ActionBarActivity {
@@ -27,10 +31,10 @@ public class ShowNormalsActivity extends ActionBarActivity {
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
         CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
 
-        TextView tvCharName = (TextView)findViewById(R.id.char_name);
+        TextView tv = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);
 
-        tvCharName.setText(ResourceHelper.CharacterNames[characterId]);
+        tv.setText("Normals");
         ivCharImage.setImageResource(ResourceHelper.ThumbIds[characterId]);
 
         if (charSDO != null) {
@@ -42,7 +46,7 @@ public class ShowNormalsActivity extends ActionBarActivity {
                 aMoveNames.add(charSDO.normals.get(i).name);
             }
 
-            AlternatingColorListViewAdaptor adapter = new AlternatingColorListViewAdaptor(this,
+            AlternatingColorListViewAdapter adapter = new AlternatingColorListViewAdapter(this,
                     R.layout.move_layout, aMoveNames);
 
             lvMoves.setAdapter(adapter);

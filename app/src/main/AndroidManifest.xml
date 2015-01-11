@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="fd3s.framedata3s" >
 
+    android:allowBackup="true"
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
@@ -17,7 +17,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ShowNormalsActivity"
+            android:name=".moves.ShowDataCategoriesActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.normals.ShowNormalsActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.specials.ShowSpecialsActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.supers.ShowSupersActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.others.ShowOthersActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.gjnormals.ShowGeneiJinNormalsActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.gjspecials.ShowGeneiJinSpecialsActivity"
             android:label="@string/title_activity_character" >
         </activity>
     </application>

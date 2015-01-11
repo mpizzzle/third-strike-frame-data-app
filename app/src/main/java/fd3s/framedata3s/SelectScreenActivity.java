@@ -9,6 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import fd3s.framedata3s.adapters.SelectScreenImageAdapter;
+import fd3s.framedata3s.moves.ShowDataCategoriesActivity;
+import fd3s.framedata3s.moves.normals.ShowNormalsActivity;
+import fd3s.framedata3s.utils.ResourceHelper;
+
 public class SelectScreenActivity extends ActionBarActivity {
     private SelectScreenActivity ref = this;
 
@@ -24,7 +29,7 @@ public class SelectScreenActivity extends ActionBarActivity {
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent myIntent = new Intent(ref, ShowNormalsActivity.class);
+                Intent myIntent = new Intent(ref, ShowDataCategoriesActivity.class);
                 myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), position);
                 startActivity(myIntent);
             }

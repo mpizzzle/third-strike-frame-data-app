@@ -1,4 +1,6 @@
-package fd3s.framedata3s;
+package fd3s.framedata3s.utils;
+
+import fd3s.framedata3s.R;
 
 public class ResourceHelper {
 
@@ -34,7 +36,12 @@ public class ResourceHelper {
 
     public static enum ResourceIds {
         CHARACTER_ID,
-        MOVE_ID
+        NORMAL_ID,
+        SPECIAL_ID,
+        SUPER_ID,
+        OTHER_ID,
+        GJ_NORMAL_ID,
+        GJ_SPECIAL_ID
     }
 
     public static final String SelectScreenTitle = "SF3:3S Frame Data";

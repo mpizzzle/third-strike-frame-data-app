@@ -1,4 +1,4 @@
-package fd3s.framedata3s;
+package fd3s.framedata3s.adapters;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,16 +10,18 @@ import android.view.LayoutInflater;
 import android.widget.TextView;
 import android.graphics.Color;
 
+import fd3s.framedata3s.R;
+
 /**
  * Created by Waseem Suleman on 10/01/15.
  */
-public class AlternatingColorListViewAdaptor extends ArrayAdapter {
+public class AlternatingColorListViewAdapter extends ArrayAdapter {
 
     private Context mContext;
     private int id;
     private List<String> items;
 
-    public AlternatingColorListViewAdaptor(Context context, int textViewResourceId, List<String> list) {
+    public AlternatingColorListViewAdapter(Context context, int textViewResourceId, List<String> list) {
         super(context, textViewResourceId, list);
         mContext = context;
         id = textViewResourceId;

@@ -7,22 +7,28 @@
     android:background="@drawable/gradient"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:paddingBottom="10dp"
-        android:id="@+id/char_image" />
+        android:orientation="horizontal"
+        android:paddingBottom="2dp">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name"
-        android:gravity="center"
-        android:textColor="@android:color/white"
-        android:background="@android:color/black"
-        android:id="@+id/char_name" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/char_image" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Name"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:id="@+id/page_heading" />
+    </LinearLayout>
 
     <ListView
         android:layout_width="fill_parent"
