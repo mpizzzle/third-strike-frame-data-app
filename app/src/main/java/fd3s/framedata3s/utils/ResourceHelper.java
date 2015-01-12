@@ -26,7 +26,7 @@ public class ResourceHelper {
             "Ryu", "Urien",
             "Remy", "Oro",
             "Necro", "Q",
-            "Remy", "Ibuki",
+            "Dudley", "Ibuki",
             "Chun Li", "Elena",
             "Sean", "Makoto",
             "Hugo", "Alex",
