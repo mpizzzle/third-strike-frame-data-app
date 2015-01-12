@@ -51,32 +51,49 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
                 ((TextView)findViewById(R.id.detail_hit_adv)).setText(normalSDO.hit_advantage);
                 ((TextView)findViewById(R.id.detail_crouch_hit_adv)).setText(normalSDO.crouch_hit_advantage);
 
+                ((TextView)findViewById(R.id.detail_damage)).setText(normalSDO.damage);
+                ((TextView)findViewById(R.id.detail_stun)).setText(normalSDO.stun);
+                ((TextView)findViewById(R.id.detail_kara_range)).setText(normalSDO.kara_range);
+                ((TextView)findViewById(R.id.detail_throw_range)).setText(normalSDO.throw_range);
+
+                ((TextView)findViewById(R.id.detail_bgs_wiff)).setText(normalSDO.bar_gain_self.wiff + "");
+                ((TextView)findViewById(R.id.detail_bgs_hit)).setText(normalSDO.bar_gain_self.hit + "");
+                ((TextView)findViewById(R.id.detail_bgs_block)).setText(normalSDO.bar_gain_self.block + "");
+
+                ((TextView)findViewById(R.id.detail_bgo_hit)).setText(normalSDO.bar_gain_opp.hit + "");
+                ((TextView)findViewById(R.id.detail_bgo_block)).setText(normalSDO.bar_gain_opp.block + "");
+
                 if(normalSDO.cancel._super){
                     ((TextView)findViewById(R.id.detail_cancel_super)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_super)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.cancel._chain){
                     ((TextView)findViewById(R.id.detail_cancel_chain)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_chain)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.cancel._dash){
                     ((TextView)findViewById(R.id.detail_cancel_dash)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_dash)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.cancel._self){
                     ((TextView)findViewById(R.id.detail_cancel_self)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_self)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.cancel._special){
                     ((TextView)findViewById(R.id.detail_cancel_special)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_special)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.cancel._sjump){
                     ((TextView)findViewById(R.id.detail_cancel_jump)).setBackgroundColor(Color.YELLOW);
+                    ((TextView)findViewById(R.id.detail_cancel_jump)).setTextColor(Color.BLACK);
                 }
 
-
                 if(normalSDO.parry.high){
-                    ((TextView)findViewById(R.id.detail_parry_high)).setBackgroundColor(Color.CYAN);
+                    ((TextView)findViewById(R.id.detail_parry_high)).setBackgroundColor(Color.argb(0xFF,0x77, 0xCC, 0xBB));
                     ((TextView)findViewById(R.id.detail_parry_high)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.parry.low){
-                    ((TextView)findViewById(R.id.detail_parry_low)).setBackgroundColor(Color.CYAN);
+                    ((TextView)findViewById(R.id.detail_parry_low)).setBackgroundColor(Color.argb(0xFF,0x77, 0xCC, 0xBB));
                     ((TextView)findViewById(R.id.detail_parry_low)).setTextColor(Color.BLACK);
                 }
             }
