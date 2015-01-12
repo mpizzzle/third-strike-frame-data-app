@@ -30,6 +30,36 @@
             android:id="@+id/page_heading" />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".30"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Motion"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:background="#509664"
+            android:id="@+id/detail_motion_label" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".70"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="detail"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:background="#64AA80"
+            android:id="@+id/detail_motion" />
+    </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -166,66 +196,6 @@
                     android:textColor="@android:color/black"
                     android:background="#77CCBB"
                     android:id="@+id/detail_block_adv" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".70"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Hit Advantage"
-                    android:gravity="center"
-                    android:layout_marginRight="2dp"
-                    android:textColor="@android:color/black"
-                    android:background="#77AA99"
-                    android:id="@+id/detail_hit_adv_label" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".30"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="detail"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:background="#77CCBB"
-                    android:id="@+id/detail_hit_adv" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".70"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="Crouch Hit Advantage"
-                    android:gravity="center"
-                    android:layout_marginRight="2dp"
-                    android:textColor="@android:color/black"
-                    android:background="#77AA99"
-                    android:id="@+id/detail_crouch_hit_adv_label" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight=".30"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:text="detail"
-                    android:gravity="center"
-                    android:textColor="@android:color/black"
-                    android:background="#77CCBB"
-                    android:id="@+id/detail_crouch_hit_adv" />
             </LinearLayout>
 
 
@@ -396,7 +366,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".33"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:layout_marginRight="2dp">
@@ -425,7 +395,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".33"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:layout_marginLeft="2dp">
@@ -449,54 +419,21 @@
                         android:background="#77CCBB"
                         android:id="@+id/detail_stun" />
                 </LinearLayout>
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".50"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Kara Range"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_kara_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_kara_range" />
-                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:layout_weight=".50"
+                    android:layout_weight=".33"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
                     android:layout_marginLeft="2dp">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:layout_height="0dp"
+                        android:layout_weight=".50"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Throw Range"
                         android:gravity="center"
                         android:textColor="@android:color/black"
@@ -505,7 +442,8 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight=".50"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
                         android:gravity="center"
@@ -514,192 +452,21 @@
                         android:id="@+id/detail_throw_range" />
                 </LinearLayout>
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Bar Gain (Self)"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="2dp"
-                android:textColor="@android:color/black"
-                android:background="#FFAA99"
-                android:id="@+id/detail_bgs_label" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".33"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Wiff"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_bgs_wiff_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_bgs_wiff" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".33"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Hit"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_bgs_hit_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_bgs_hit" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".33"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Block"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_bgs_block_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_bgs_block" />
-                </LinearLayout>
-            </LinearLayout>
-
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Bar Gain (Opponent)"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="2dp"
-                android:textColor="@android:color/black"
-                android:background="#FFAA99"
-                android:id="@+id/detail_bgo_label" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".50"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Hit"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_bgo_hit_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_bgo_hit" />
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight=".50"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginBottom="2dp"
-                    android:layout_marginRight="2dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Block"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77AA99"
-                        android:id="@+id/detail_bgo_block_label" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="0"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:background="#77CCBB"
-                        android:id="@+id/detail_bgo_block" />
-                </LinearLayout>
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
+
+<!--
+
+	public String name;
+	public String motion;
+	public String startup;
+	public String hit;
+	public String recovery;
+	public String block_advantage;
+	public CancelableSDO cancel;
+	public ParrySDO parry;
+	public String throw_range;
+	public String damage;
+	public String stun;
+-->

@@ -1,5 +1,6 @@
 package fd3s.framedata3s.moves.gjnormals;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 
 import fd3s.framedata3s.R;
 import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
+import fd3s.framedata3s.moves.normals.ShowNormalDetailActivity;
 import fd3s.framedata3s.sdo.CharSDO;
 import fd3s.framedata3s.utils.FrameDataProvider;
 import fd3s.framedata3s.utils.ResourceHelper;
@@ -27,7 +29,7 @@ public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
         CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
 
@@ -53,12 +55,15 @@ public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
 
             lvMoves.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    //Intent myIntent = new Intent(ref, CharacterActivity.class);
-                    //myIntent.putExtra(ResourceHelper.ResourceIds.MOVE_ID.name(), position);
-                    //startActivity(myIntent);
+                    Intent myIntent = new Intent(ref, ShowGeneiJinNormalDetailActivity.class);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), characterId);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.GJ_NORMAL_ID.name(), position);
+                    startActivity(myIntent);
+                    /*
                     String  itemValue    = (String) lvMoves.getItemAtPosition(position);
                     Toast.makeText(getApplicationContext(),
                     "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
+                    */
                 }
             });
         }

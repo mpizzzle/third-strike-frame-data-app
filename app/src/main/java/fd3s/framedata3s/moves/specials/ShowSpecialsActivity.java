@@ -1,5 +1,6 @@
 package fd3s.framedata3s.moves.specials;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -27,7 +28,7 @@ public class ShowSpecialsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
         CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
 
@@ -43,7 +44,7 @@ public class ShowSpecialsActivity extends ActionBarActivity {
             ArrayList<String> aMoveNames = new ArrayList<String>();
 
             for(int i = 0; i < charSDO.specials.size(); i++){
-                aMoveNames.add(charSDO.specials.get(i).name + " - " + charSDO.specials.get(i).motion);
+                aMoveNames.add(charSDO.specials.get(i).name);
             }
 
             AlternatingColorListViewAdapter adapter = new AlternatingColorListViewAdapter(this,
@@ -53,12 +54,15 @@ public class ShowSpecialsActivity extends ActionBarActivity {
 
             lvMoves.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    //Intent myIntent = new Intent(ref, CharacterActivity.class);
-                    //myIntent.putExtra(ResourceHelper.ResourceIds.MOVE_ID.name(), position);
-                    //startActivity(myIntent);
+                    Intent myIntent = new Intent(ref, ShowSpecialsDetailActivity.class);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.SPECIAL_ID.name(), position);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), characterId);
+                    startActivity(myIntent);
+                    /*
                     String  itemValue    = (String) lvMoves.getItemAtPosition(position);
                     Toast.makeText(getApplicationContext(),
                     "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
+                    */
                 }
             });
         }

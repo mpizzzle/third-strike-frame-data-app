@@ -33,7 +33,15 @@
             android:label="@string/title_activity_character" >
         </activity>
         <activity
+            android:name=".moves.specials.ShowSpecialsDetailActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
             android:name=".moves.supers.ShowSupersActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.supers.ShowSuperDetailActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
@@ -45,7 +53,15 @@
             android:label="@string/title_activity_character" >
         </activity>
         <activity
+            android:name=".moves.gjnormals.ShowGeneiJinNormalDetailActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
             android:name=".moves.gjspecials.ShowGeneiJinSpecialsActivity"
+            android:label="@string/title_activity_character" >
+        </activity>
+        <activity
+            android:name=".moves.gjspecials.ShowGeneiJinSpecialsDetailActivity"
             android:label="@string/title_activity_character" >
         </activity>
     </application>
