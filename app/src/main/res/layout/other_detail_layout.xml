@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:text="@string/hello_world"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="@drawable/gradient"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="2dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/char_image" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Name"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:background="@android:color/black"
+            android:id="@+id/page_heading" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Jump Data"
+                android:gravity="center"
+                android:textColor="@android:color/black"
+                android:background="#FFAA99"
+                android:id="@+id/jump_data_label" />
+
+            <LinearLayout
+                android:id="@+id/jump_list_view"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Dash Data"
+                android:gravity="center"
+                android:layout_marginBottom="2dp"
+                android:textColor="@android:color/black"
+                android:background="#FFAA99"
+                android:id="@+id/dash_data_label" />
+
+            <LinearLayout
+                android:id="@+id/dash_list_view"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Wake-up Data"
+                android:gravity="center"
+                android:layout_marginBottom="2dp"
+                android:textColor="@android:color/black"
+                android:background="#FFAA99"
+                android:id="@+id/detail_frame_label" />
+
+            <LinearLayout
+                android:id="@+id/wake_up_list_view"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
