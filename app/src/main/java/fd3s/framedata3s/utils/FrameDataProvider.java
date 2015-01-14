@@ -24,6 +24,7 @@ public class FrameDataProvider {
 
     public static FrameDataProvider getInstance(int characterId, Context context){
         if(me == null || FrameDataProvider.characterId != characterId){
+            FrameDataProvider.characterId = characterId;
             me = new FrameDataProvider(ResourceHelper.CharacterNames[characterId] + ".txt", context);
         }
 
