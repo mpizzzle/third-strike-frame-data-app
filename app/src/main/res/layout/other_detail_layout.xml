@@ -64,6 +64,7 @@
                 android:text="Dash Data"
                 android:gravity="center"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="1dp"
                 android:textColor="@android:color/black"
                 android:background="#FFAA99"
                 android:id="@+id/dash_data_label" />
@@ -82,6 +83,7 @@
                 android:text="Wake-up Data"
                 android:gravity="center"
                 android:layout_marginBottom="2dp"
+                android:layout_marginTop="1dp"
                 android:textColor="@android:color/black"
                 android:background="#FFAA99"
                 android:id="@+id/detail_frame_label" />

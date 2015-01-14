@@ -21,7 +21,6 @@ import fd3s.framedata3s.utils.ResourceHelper;
 
 public class ShowOthersActivity extends ActionBarActivity {
 
-
     private static final String JUMP_PATTERN = "jump";
     private static final String DASH_PATTERN = "Dash";
     private static final String WAKEUP_PATTERN = "Wakeup";
