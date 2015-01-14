@@ -89,11 +89,11 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
                 }
 
                 if(normalSDO.parry.high){
-                    ((TextView)findViewById(R.id.detail_parry_high)).setBackgroundColor(Color.argb(0xFF,0x77, 0xCC, 0xBB));
+                    ((TextView)findViewById(R.id.detail_parry_high)).setBackgroundColor(Color.YELLOW);
                     ((TextView)findViewById(R.id.detail_parry_high)).setTextColor(Color.BLACK);
                 }
                 if(normalSDO.parry.low){
-                    ((TextView)findViewById(R.id.detail_parry_low)).setBackgroundColor(Color.argb(0xFF,0x77, 0xCC, 0xBB));
+                    ((TextView)findViewById(R.id.detail_parry_low)).setBackgroundColor(Color.YELLOW);
                     ((TextView)findViewById(R.id.detail_parry_low)).setTextColor(Color.BLACK);
                 }
             }
