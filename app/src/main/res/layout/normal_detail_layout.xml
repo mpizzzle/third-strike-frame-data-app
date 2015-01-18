@@ -38,6 +38,30 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="2dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minHeight="448px"
+                    android:minWidth="384px"
+                    android:id="@+id/sprite_image" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text="Beta sprite (showing first active frame)"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:background="@android:color/black"
+                    android:id="@+id/sprite_heading" />
+            </LinearLayout>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

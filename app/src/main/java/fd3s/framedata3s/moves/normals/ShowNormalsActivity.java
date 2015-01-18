@@ -12,10 +12,9 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
-import fd3s.framedata3s.utils.FrameDataProvider;
+import fd3s.framedata3s.utils.CharDataProvider;
 import fd3s.framedata3s.R;
 import fd3s.framedata3s.utils.ResourceHelper;
 import fd3s.framedata3s.sdo.CharSDO;
@@ -30,7 +29,7 @@ public class ShowNormalsActivity extends ActionBarActivity {
 
         final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
-        CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
+        CharSDO charSDO = CharDataProvider.getInstance(characterId, this).getCharSDO();
 
         TextView tv = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);

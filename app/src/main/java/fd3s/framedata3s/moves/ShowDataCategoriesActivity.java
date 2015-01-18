@@ -23,7 +23,7 @@ import fd3s.framedata3s.moves.others.ShowOthersActivity;
 import fd3s.framedata3s.moves.specials.ShowSpecialsActivity;
 import fd3s.framedata3s.moves.supers.ShowSupersActivity;
 import fd3s.framedata3s.sdo.CharSDO;
-import fd3s.framedata3s.utils.FrameDataProvider;
+import fd3s.framedata3s.utils.CharDataProvider;
 import fd3s.framedata3s.utils.ResourceHelper;
 
 public class ShowDataCategoriesActivity extends ActionBarActivity {
@@ -36,7 +36,7 @@ public class ShowDataCategoriesActivity extends ActionBarActivity {
 
         final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
-        CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
+        CharSDO charSDO = CharDataProvider.getInstance(characterId, this).getCharSDO();
 
         TextView tvCharName = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);

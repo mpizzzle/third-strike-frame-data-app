@@ -1,23 +1,20 @@
 package fd3s.framedata3s.moves.normals;
 
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import fd3s.framedata3s.R;
-import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
 import fd3s.framedata3s.sdo.CharSDO;
+import fd3s.framedata3s.sdo.FrameHitBoxData;
 import fd3s.framedata3s.sdo.NormalSDO;
+import fd3s.framedata3s.utils.CharDataProvider;
 import fd3s.framedata3s.utils.FrameDataProvider;
 import fd3s.framedata3s.utils.ResourceHelper;
 
@@ -29,10 +26,10 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.normal_detail_layout);
 
-        int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
-        int normalId = getIntent().getIntExtra(ResourceHelper.ResourceIds.NORMAL_ID.name(), 0);
+        final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        final int normalId = getIntent().getIntExtra(ResourceHelper.ResourceIds.NORMAL_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
-        CharSDO charSDO = FrameDataProvider.getInstance(characterId, this).getCharSDO();
+        final CharSDO charSDO = CharDataProvider.getInstance(characterId, this).getCharSDO();
 
         TextView tv = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);
@@ -43,6 +40,27 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
         if (charSDO != null) {
             NormalSDO normalSDO = charSDO.normals.get(normalId);
             if(normalSDO != null){
+
+                final int firstActiveFrame = Integer.parseInt(normalSDO.startup)+1;
+
+
+                new AsyncTask<Void, Void, Void>(){
+                    private FrameHitBoxData frame;
+                    @Override
+                    protected Void doInBackground(Void... params){
+                        frame = FrameDataProvider.getMoveFrame(charSDO, characterId, ResourceHelper.ResourceIds.NORMAL_ID, normalId, firstActiveFrame);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result){
+                        TextView stv = (TextView)findViewById(R.id.sprite_heading);
+                        ImageView ivSpriteImage = (ImageView)findViewById(R.id.sprite_image);
+                        stv.setText(frame.json);
+                        ivSpriteImage.setImageDrawable(frame.sprite);
+                    }
+                }.execute();
+
                 tv.setText(normalSDO.name);
                 ((TextView)findViewById(R.id.detail_startup)).setText(normalSDO.startup);
                 ((TextView)findViewById(R.id.detail_hit)).setText(normalSDO.hit);
