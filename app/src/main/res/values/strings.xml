@@ -5,5 +5,8 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_character">CharacterActivity</string>
+    <string name="preference_attributes">settings</string>
+    <string name="title_wifi_only">Download only on WiFi</string>
+    <string name="summary_wifi_only">Download hit box data while only connected to a WiFi network.</string>
 
 </resources>

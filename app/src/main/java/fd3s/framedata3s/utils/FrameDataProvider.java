@@ -1,8 +1,11 @@
 package fd3s.framedata3s.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -31,6 +34,7 @@ public class FrameDataProvider {
     //https://s3-eu-west-1.amazonaws.com/3sfdfiles/hitBox/Alex/fd_normals/1/0.png
     private static String baseUrl = "https://s3-eu-west-1.amazonaws.com/3sfdfiles/hitBox/";
     private static final Map<String, String> miscNames = new HashMap<String, String>();
+    private static Context context;
     static {
         miscNames.put("Neutral jump startup", "jumpNeutral");
         miscNames.put("Backward jump startup", "jumpBackward");
@@ -50,7 +54,11 @@ public class FrameDataProvider {
             "fd_normals","fd_specials","fd_supers","fd_gj_normals","fd_gj_specials","fd_misc"
     };
 
-    public static FrameHitBoxData getMoveFrame(Context context, CharSDO charSDO, int charId, ResourceIds type, int moveId, int frameId){
+    public FrameDataProvider(Context context){
+        FrameDataProvider.context = context.getApplicationContext();
+    }
+
+    public FrameHitBoxData getMoveFrame(CharSDO charSDO, int charId, ResourceIds type, int moveId, int frameId){
         int properId = moveId+1;
         int typeId = 0;
         switch (type) {
@@ -77,57 +85,38 @@ public class FrameDataProvider {
                 throw new UnsupportedOperationException("Type not supported.");
         }
 
-        String frameUrl = FrameDataProvider.baseUrl + ResourceHelper.CharacterNames[charId] + "/" + moveTypeList[typeId] + "/" + properId + "/" + frameId;
+        String frameUrl = FrameDataProvider.baseUrl + (ResourceHelper.CharacterNames[charId].replace(' ', '+')) + "/" + moveTypeList[typeId] + "/" + properId + "/" + frameId;
         String filename = ResourceHelper.CharacterNames[charId] + "-" + moveTypeList[typeId] + "-" + properId + "-" + frameId;
-
-        FrameHitBoxData frame = new FrameHitBoxData();
-
-        frame.json = getTextFromFile(context, filename + ".txt");
-        if(frame.json == null || frame.json.equals("")){
-            loadStringFromWebOperations(context, filename + ".txt", frameUrl + ".txt");
-            frame.json = getTextFromFile(context, filename + ".txt");
-        }
-
-        if(frame.json == null || frame.json.equals("")){
-            frame.json = "Could not retrieve data";
-        }
-
-        frame.sprite = getDrawableFromFile(context, filename + ".png");
-        if(frame.sprite == null){
-            loadImageFromWebOperations(context, filename + ".png", frameUrl + ".png");
-            frame.sprite = getDrawableFromFile(context, filename + ".png");
-        }
-
-        if(frame.sprite == null){
-            frame.sprite = context.getResources().getDrawable(R.drawable.not_found);
-        }
-        return frame;
+        return getFrameHitBoxData(frameUrl, filename);
     }
 
-    public static FrameHitBoxData getMiscFrame(Context context, int charId, String key, int frameId){
+    public FrameHitBoxData getMiscFrame(int charId, String key, int frameId){
         String properId = miscNames.get(key);
         if (properId == null) {
             throw new UnsupportedOperationException("Misc frame not supported.");
         }
         String frameUrl = FrameDataProvider.baseUrl + ResourceHelper.CharacterNames[charId] + "/" + moveTypeList[5] + "/" + properId + "/" + frameId;
         String filename = ResourceHelper.CharacterNames[charId] + "-" + moveTypeList[5] + "-" + properId + "-" + frameId;
+        return getFrameHitBoxData(frameUrl, filename);
+    }
 
+    private FrameHitBoxData getFrameHitBoxData(String frameUrl, String filename){
         FrameHitBoxData frame = new FrameHitBoxData();
 
-        frame.json = getTextFromFile(context, filename + ".txt");
+        frame.json = getTextFromFile(filename + ".txt");
         if(frame.json == null || frame.json.equals("")){
-            loadStringFromWebOperations(context, filename + ".txt", frameUrl + ".txt");
-            frame.json = getTextFromFile(context, filename + ".txt");
+            loadStringFromWebOperations(filename + ".txt", frameUrl + ".txt");
+            frame.json = getTextFromFile(filename + ".txt");
         }
 
         if(frame.json == null || frame.json.equals("")){
             frame.json = "Could not retrieve data";
         }
 
-        frame.sprite = getDrawableFromFile(context, filename + ".png");
+        frame.sprite = getDrawableFromFile(filename + ".png");
         if(frame.sprite == null){
-            loadImageFromWebOperations(context, filename + ".png", frameUrl + ".png");
-            frame.sprite = getDrawableFromFile(context, filename + ".png");
+            loadImageFromWebOperations(filename + ".png", frameUrl + ".png");
+            frame.sprite = getDrawableFromFile(filename + ".png");
         }
 
         if(frame.sprite == null){
@@ -137,7 +126,10 @@ public class FrameDataProvider {
         return frame;
     }
 
-    public static void loadStringFromWebOperations(Context context, String filename, String weblink) {
+    private void loadStringFromWebOperations(String filename, String weblink) {
+        if(!isConnectedToNet()){
+            return;
+        }
         String stringText = "";
         URL textUrl;
         try {
@@ -148,7 +140,7 @@ public class FrameDataProvider {
                 stringText += StringBuffer;
             }
             bufferReader.close();
-            persistBytesToFile(context, filename, (""+bufferReader).getBytes());
+            persistBytesToFile(filename, (stringText.toString()).getBytes());
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -160,7 +152,7 @@ public class FrameDataProvider {
         }
     }
 
-    private static String getTextFromFile(Context context, String filename){
+    private String getTextFromFile(String filename){
         StringBuffer buffer = new StringBuffer();
         try {
             FileInputStream fis = context.openFileInput(filename);
@@ -182,7 +174,7 @@ public class FrameDataProvider {
         return buffer.toString();
     }
 
-    private static Drawable getDrawableFromFile(Context context, String filename){
+    private Drawable getDrawableFromFile(String filename){
         Drawable sprite;
         File filePath = context.getFileStreamPath(filename);
         if(filePath != null) {
@@ -192,7 +184,10 @@ public class FrameDataProvider {
         return null;
     }
 
-    public static void loadImageFromWebOperations(Context context, String filename, String weblink) {
+    public void loadImageFromWebOperations(String filename, String weblink) {
+        if(!isConnectedToNet()){
+            return;
+        }
         try {
             URL u = new URL(weblink);
             URLConnection uc = u.openConnection();
@@ -200,6 +195,9 @@ public class FrameDataProvider {
                 return;
             }
             String contentType = uc.getContentType();
+            if(contentType == null){
+                return;
+            }
             int contentLength = uc.getContentLength();
             if (contentType.startsWith("text/") || contentLength == -1) {
                 throw new IOException("This is not a binary file.");
@@ -220,13 +218,13 @@ public class FrameDataProvider {
             if (offset != contentLength) {
                 throw new IOException("Only read " + offset + " bytes; Expected " + contentLength + " bytes");
             }
-            persistBytesToFile(context, filename, data);
+            persistBytesToFile(filename, data);
         }catch (IOException e){
             e.printStackTrace();
         }
     }
 
-    private static boolean persistBytesToFile(Context context, String filename, byte[] data){
+    private boolean persistBytesToFile(String filename, byte[] data){
         try {
             FileOutputStream out = context.openFileOutput(filename, Context.MODE_PRIVATE);
             if(out != null) {
@@ -240,5 +238,21 @@ public class FrameDataProvider {
             return false;
         }
         return false;
+    }
+
+    private boolean isConnectedToNet(){
+        SharedPreferences prefs = context.getSharedPreferences("GLOBAL", Context.MODE_PRIVATE);
+        ConnectivityManager connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+
+        if (mWifi.isConnected()) {
+            return true;
+        }
+
+        if(prefs.getBoolean("WIFIONLY", false)){
+            return false;
+        }
+
+        return connManager.getActiveNetworkInfo() != null;
     }
 }

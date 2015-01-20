@@ -64,6 +64,11 @@
             android:name=".moves.gjspecials.ShowGeneiJinSpecialsDetailActivity"
             android:label="@string/title_activity_character" >
         </activity>
+        <activity
+            android:name=".preference.UserSettingActivity"
+            android:label="@string/preference_attributes" >
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 </manifest>

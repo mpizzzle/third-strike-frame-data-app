@@ -1,8 +1,10 @@
 package fd3s.framedata3s;
 
+import android.app.LauncherActivity;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.internal.view.menu.ListMenuItemView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.GridView;
 import fd3s.framedata3s.adapters.SelectScreenImageAdapter;
 import fd3s.framedata3s.moves.ShowDataCategoriesActivity;
 import fd3s.framedata3s.moves.normals.ShowNormalsActivity;
+import fd3s.framedata3s.preference.UserSettingActivity;
 import fd3s.framedata3s.utils.ResourceHelper;
 
 public class SelectScreenActivity extends ActionBarActivity {
@@ -47,6 +50,8 @@ public class SelectScreenActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            Intent myIntent = new Intent(ref, UserSettingActivity.class);
+            startActivity(myIntent);
             return true;
         }
 

@@ -27,7 +27,7 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.normal_detail_layout);
 
-        final Context curContext = this;
+        final FrameDataProvider fdProvider = new FrameDataProvider(this);
         final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         final int normalId = getIntent().getIntExtra(ResourceHelper.ResourceIds.NORMAL_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
@@ -42,15 +42,12 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
         if (charSDO != null) {
             NormalSDO normalSDO = charSDO.normals.get(normalId);
             if(normalSDO != null){
-
                 final int firstActiveFrame = Integer.parseInt(normalSDO.startup)+1;
-
-
                 new AsyncTask<Void, Void, Void>(){
                     private FrameHitBoxData frame;
                     @Override
                     protected Void doInBackground(Void... params){
-                        frame = FrameDataProvider.getMoveFrame(curContext, charSDO, characterId, ResourceHelper.ResourceIds.NORMAL_ID, normalId, firstActiveFrame);
+                        frame = fdProvider.getMoveFrame(charSDO, characterId, ResourceHelper.ResourceIds.NORMAL_ID, normalId, firstActiveFrame);
                         return null;
                     }
 

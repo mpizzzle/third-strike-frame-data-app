@@ -1,0 +1,9 @@
+<preference-headers
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header android:icon="@drawable/ic_launcher"
+        android:title="Settings"
+        android:summary="Application Settings">
+    </header>
+
+</preference-headers>
