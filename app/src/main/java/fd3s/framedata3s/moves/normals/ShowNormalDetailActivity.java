@@ -1,5 +1,6 @@
 package fd3s.framedata3s.moves.normals;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.normal_detail_layout);
 
+        final Context curContext = this;
         final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
         final int normalId = getIntent().getIntExtra(ResourceHelper.ResourceIds.NORMAL_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
@@ -48,7 +50,7 @@ public class ShowNormalDetailActivity extends ActionBarActivity {
                     private FrameHitBoxData frame;
                     @Override
                     protected Void doInBackground(Void... params){
-                        frame = FrameDataProvider.getMoveFrame(charSDO, characterId, ResourceHelper.ResourceIds.NORMAL_ID, normalId, firstActiveFrame);
+                        frame = FrameDataProvider.getMoveFrame(curContext, charSDO, characterId, ResourceHelper.ResourceIds.NORMAL_ID, normalId, firstActiveFrame);
                         return null;
                     }
 

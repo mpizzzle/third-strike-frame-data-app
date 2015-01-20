@@ -1,19 +1,25 @@
 package fd3s.framedata3s.utils;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
+import fd3s.framedata3s.R;
 import fd3s.framedata3s.sdo.CharSDO;
 import fd3s.framedata3s.sdo.FrameHitBoxData;
 import fd3s.framedata3s.utils.ResourceHelper.ResourceIds;
@@ -44,7 +50,7 @@ public class FrameDataProvider {
             "fd_normals","fd_specials","fd_supers","fd_gj_normals","fd_gj_specials","fd_misc"
     };
 
-    public static FrameHitBoxData getMoveFrame(CharSDO charSDO, int charId, ResourceIds type, int moveId, int frameId){
+    public static FrameHitBoxData getMoveFrame(Context context, CharSDO charSDO, int charId, ResourceIds type, int moveId, int frameId){
         int properId = moveId+1;
         int typeId = 0;
         switch (type) {
@@ -72,37 +78,66 @@ public class FrameDataProvider {
         }
 
         String frameUrl = FrameDataProvider.baseUrl + ResourceHelper.CharacterNames[charId] + "/" + moveTypeList[typeId] + "/" + properId + "/" + frameId;
+        String filename = ResourceHelper.CharacterNames[charId] + "-" + moveTypeList[typeId] + "-" + properId + "-" + frameId;
 
         FrameHitBoxData frame = new FrameHitBoxData();
-        frame.json = loadStringFromWebOperations(frameUrl + ".txt");
-        frame.sprite = loadImageFromWebOperations(frameUrl + ".png");
+
+        frame.json = getTextFromFile(context, filename + ".txt");
+        if(frame.json == null || frame.json.equals("")){
+            loadStringFromWebOperations(context, filename + ".txt", frameUrl + ".txt");
+            frame.json = getTextFromFile(context, filename + ".txt");
+        }
+
+        if(frame.json == null || frame.json.equals("")){
+            frame.json = "Could not retrieve data";
+        }
+
+        frame.sprite = getDrawableFromFile(context, filename + ".png");
+        if(frame.sprite == null){
+            loadImageFromWebOperations(context, filename + ".png", frameUrl + ".png");
+            frame.sprite = getDrawableFromFile(context, filename + ".png");
+        }
+
+        if(frame.sprite == null){
+            frame.sprite = context.getResources().getDrawable(R.drawable.not_found);
+        }
         return frame;
     }
 
-    public static FrameHitBoxData getMiscFrame(int charId, String key, int frameId){
+    public static FrameHitBoxData getMiscFrame(Context context, int charId, String key, int frameId){
         String properId = miscNames.get(key);
         if (properId == null) {
             throw new UnsupportedOperationException("Misc frame not supported.");
         }
         String frameUrl = FrameDataProvider.baseUrl + ResourceHelper.CharacterNames[charId] + "/" + moveTypeList[5] + "/" + properId + "/" + frameId;
+        String filename = ResourceHelper.CharacterNames[charId] + "-" + moveTypeList[5] + "-" + properId + "-" + frameId;
 
         FrameHitBoxData frame = new FrameHitBoxData();
-        frame.json = loadStringFromWebOperations(frameUrl + ".txt");
-        frame.sprite = loadImageFromWebOperations(frameUrl + ".png");
+
+        frame.json = getTextFromFile(context, filename + ".txt");
+        if(frame.json == null || frame.json.equals("")){
+            loadStringFromWebOperations(context, filename + ".txt", frameUrl + ".txt");
+            frame.json = getTextFromFile(context, filename + ".txt");
+        }
+
+        if(frame.json == null || frame.json.equals("")){
+            frame.json = "Could not retrieve data";
+        }
+
+        frame.sprite = getDrawableFromFile(context, filename + ".png");
+        if(frame.sprite == null){
+            loadImageFromWebOperations(context, filename + ".png", frameUrl + ".png");
+            frame.sprite = getDrawableFromFile(context, filename + ".png");
+        }
+
+        if(frame.sprite == null){
+            frame.sprite = context.getResources().getDrawable(R.drawable.not_found);
+        }
+
         return frame;
     }
 
-    private static Drawable loadImageFromWebOperations(String url) {
-        try {
-            InputStream is = (InputStream) new URL(url).getContent();
-            Drawable d = Drawable.createFromStream(is, "src name");
-            return d;
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    public static String loadStringFromWebOperations(String weblink) {
+    public static void loadStringFromWebOperations(Context context, String filename, String weblink) {
         String stringText = "";
         URL textUrl;
         try {
@@ -113,6 +148,7 @@ public class FrameDataProvider {
                 stringText += StringBuffer;
             }
             bufferReader.close();
+            persistBytesToFile(context, filename, (""+bufferReader).getBytes());
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
@@ -122,6 +158,87 @@ public class FrameDataProvider {
             e.printStackTrace();
             stringText = e.toString();
         }
-        return stringText;
+    }
+
+    private static String getTextFromFile(Context context, String filename){
+        StringBuffer buffer = new StringBuffer();
+        try {
+            FileInputStream fis = context.openFileInput(filename);
+            if(fis != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+                if (fis != null) {
+                    String read;
+                    while ((read = reader.readLine()) != null) {
+                        buffer.append(read + "\n");
+                    }
+                    fis.close();
+                }
+            }
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return buffer.toString();
+    }
+
+    private static Drawable getDrawableFromFile(Context context, String filename){
+        Drawable sprite;
+        File filePath = context.getFileStreamPath(filename);
+        if(filePath != null) {
+            sprite = Drawable.createFromPath(filePath.toString());
+            return sprite;
+        }
+        return null;
+    }
+
+    public static void loadImageFromWebOperations(Context context, String filename, String weblink) {
+        try {
+            URL u = new URL(weblink);
+            URLConnection uc = u.openConnection();
+            if(uc == null){
+                return;
+            }
+            String contentType = uc.getContentType();
+            int contentLength = uc.getContentLength();
+            if (contentType.startsWith("text/") || contentLength == -1) {
+                throw new IOException("This is not a binary file.");
+            }
+            InputStream raw = uc.getInputStream();
+            InputStream in = new BufferedInputStream(raw);
+            byte[] data = new byte[contentLength];
+            int bytesRead = 0;
+            int offset = 0;
+            while (offset < contentLength) {
+                bytesRead = in.read(data, offset, data.length - offset);
+                if (bytesRead == -1)
+                    break;
+                offset += bytesRead;
+            }
+            in.close();
+
+            if (offset != contentLength) {
+                throw new IOException("Only read " + offset + " bytes; Expected " + contentLength + " bytes");
+            }
+            persistBytesToFile(context, filename, data);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    private static boolean persistBytesToFile(Context context, String filename, byte[] data){
+        try {
+            FileOutputStream out = context.openFileOutput(filename, Context.MODE_PRIVATE);
+            if(out != null) {
+                out.write(data);
+                out.flush();
+                out.close();
+                return true;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
     }
 }
