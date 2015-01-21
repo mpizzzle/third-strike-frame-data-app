@@ -29,6 +29,7 @@ public class SelectScreenImageAdapter extends BaseAdapter {
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
+
         ImageView imageView;
         if (convertView == null) {
             imageView = new ImageView(myContext);

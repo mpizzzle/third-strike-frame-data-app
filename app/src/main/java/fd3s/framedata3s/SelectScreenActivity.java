@@ -2,6 +2,7 @@ package fd3s.framedata3s;
 
 import android.app.LauncherActivity;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.internal.view.menu.ListMenuItemView;
@@ -32,9 +33,16 @@ public class SelectScreenActivity extends ActionBarActivity {
 
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Intent myIntent = new Intent(ref, ShowDataCategoriesActivity.class);
-                myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), position);
-                startActivity(myIntent);
+                if(position == ResourceHelper.ThumbIds.length-1){
+                    String url = "http://ensabahnur.free.fr/BastonNew/index.php";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }else {
+                    Intent myIntent = new Intent(ref, ShowDataCategoriesActivity.class);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), position);
+                    startActivity(myIntent);
+                }
             }
         });
     }

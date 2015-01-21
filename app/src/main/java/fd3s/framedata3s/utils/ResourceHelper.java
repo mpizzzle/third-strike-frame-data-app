@@ -18,7 +18,8 @@ public class ResourceHelper {
             R.drawable.sean_face, R.drawable.makoto_face,
             R.drawable.hugo_face, R.drawable.alex_face,
             R.drawable.twelve_face, R.drawable.ken_face,
-            R.drawable.yang_face, R.drawable.gill_face
+            R.drawable.yang_face, R.drawable.gill_face,
+            R.drawable.esn_face
     };
 
     public static final String[] CharacterNames = {
