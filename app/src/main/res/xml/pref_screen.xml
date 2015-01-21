@@ -1,9 +1,11 @@
 <PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:icon="@drawable/ic_launcher"
+    android:title="Settings"
+    android:summary="Application Settings">
 
-        <CheckBoxPreference
-            android:key="WIFIONLY"
-            android:title="@string/title_wifi_only"
-            android:summary="@string/summary_wifi_only" />
-
+    <CheckBoxPreference
+        android:key="WIFIONLY"
+        android:title="@string/title_wifi_only"
+        android:summary="@string/summary_wifi_only" />
 </PreferenceScreen>

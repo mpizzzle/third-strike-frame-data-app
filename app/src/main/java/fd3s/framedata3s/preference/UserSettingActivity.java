@@ -1,8 +1,10 @@
 package fd3s.framedata3s.preference;
 
+import android.annotation.TargetApi;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceFragment;
 import android.widget.Button;
 
 import java.util.List;
@@ -16,14 +18,41 @@ public class UserSettingActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+        // Add a button to the header list.
+        try {
+            getClass().getMethod("getFragmentManager");
+            AddResourceApi11AndGreater();
+        } catch (NoSuchMethodException e) { //Api < 11
+            AddResourceApiLessThan11();
+        }
+        if (hasHeaders()) {
+            Button button = new Button(this);
+            button.setText("Some action");
+            setListFooter(button);
+        }
     }
 
-    /**
-     * Populate the activity with the top-level headers.
-     */
-    @Override
-    public void onBuildHeaders(List<Header> target) {
-        loadHeadersFromResource(R.xml.preference_headers, target);
+    @SuppressWarnings("deprecation")
+    protected void AddResourceApiLessThan11()
+    {
+        addPreferencesFromResource(R.xml.pref_screen);
+    }
+
+    @TargetApi(11)
+    protected void AddResourceApi11AndGreater()
+    {
+        getFragmentManager().beginTransaction().replace(android.R.id.content,
+                new MyPreferenceFragment()).commit();
+    }
+
+    @TargetApi(11)
+    public static class MyPreferenceFragment extends PreferenceFragment
+    {
+        @Override
+        public void onCreate(final Bundle savedInstanceState)
+        {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_screen);
+        }
     }
 }
