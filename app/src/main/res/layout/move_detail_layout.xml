@@ -30,12 +30,12 @@
             android:id="@+id/page_heading" />
     </LinearLayout>
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="2dp">
+        android:layout_marginBottom="2dp"
+        android:id="@+id/move_motion_container" >
 
         <TextView
             android:layout_width="0dp"
@@ -67,6 +67,76 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="2dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:minHeight="448px"
+                    android:minWidth="384px"
+                    android:id="@+id/sprite_image" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:text="Beta sprite (showing first active frame)"
+                    android:gravity="center"
+                    android:textColor="@android:color/white"
+                    android:background="@android:color/black"
+                    android:id="@+id/sprite_heading" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.20"
+                        android:text="@string/btn_first"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/btn_frame_first"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.20"
+                        android:text="@string/btn_prev"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/btn_frame_prev"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.20"
+                        android:text="@string/btn_play"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/btn_frame_play"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.20"
+                        android:text="@string/btn_next"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/btn_frame_next"/>
+
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.20"
+                        android:text="@string/btn_last"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:id="@+id/btn_frame_last"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
@@ -196,6 +266,66 @@
                     android:textColor="@android:color/black"
                     android:background="#77CCBB"
                     android:id="@+id/detail_block_adv" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".70"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Hit Advantage"
+                    android:gravity="center"
+                    android:layout_marginRight="2dp"
+                    android:textColor="@android:color/black"
+                    android:background="#77AA99"
+                    android:id="@+id/detail_hit_adv_label" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".30"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="detail"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:background="#77CCBB"
+                    android:id="@+id/detail_hit_adv" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".70"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Crouch Hit Advantage"
+                    android:gravity="center"
+                    android:layout_marginRight="2dp"
+                    android:textColor="@android:color/black"
+                    android:background="#77AA99"
+                    android:id="@+id/detail_crouch_hit_adv_label" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".30"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="detail"
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:background="#77CCBB"
+                    android:id="@+id/detail_crouch_hit_adv" />
             </LinearLayout>
 
 
@@ -360,8 +490,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/detail_other_container"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Bar Gain (Self)"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@android:color/black"
+                android:background="#FFAA99"
+                android:id="@+id/detail_bgs_label" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="2dp">
+                android:layout_marginBottom="2dp"
+                android:id="@+id/detail_bgs_container">
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -374,11 +525,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Damage"
+                        android:text="Wiff"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77AA99"
-                        android:id="@+id/detail_damage_label" />
+                        android:id="@+id/detail_bgs_wiff_label" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -388,7 +539,7 @@
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77CCBB"
-                        android:id="@+id/detail_damage" />
+                        android:id="@+id/detail_bgs_wiff" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -398,16 +549,16 @@
                     android:layout_weight=".33"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="2dp">
+                    android:layout_marginRight="2dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Stun"
+                        android:text="Hit"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77AA99"
-                        android:id="@+id/detail_stun_label" />
+                        android:id="@+id/detail_bgs_hit_label" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -417,56 +568,119 @@
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77CCBB"
-                        android:id="@+id/detail_stun" />
+                        android:id="@+id/detail_bgs_hit" />
                 </LinearLayout>
 
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_weight=".33"
                     android:layout_marginTop="2dp"
                     android:layout_marginBottom="2dp"
-                    android:layout_marginLeft="2dp">
+                    android:layout_marginRight="2dp">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".50"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="Throw Range"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Block"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77AA99"
-                        android:id="@+id/detail_throw_label" />
+                        android:id="@+id/detail_bgs_block_label" />
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight=".50"
+                        android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="0"
                         android:gravity="center"
                         android:textColor="@android:color/black"
                         android:background="#77CCBB"
-                        android:id="@+id/detail_throw_range" />
+                        android:id="@+id/detail_bgs_block" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Bar Gain (Opponent)"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="2dp"
+                android:textColor="@android:color/black"
+                android:background="#FFAA99"
+                android:id="@+id/detail_bgo_label" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="2dp"
+                android:id="@+id/detail_bgo_container">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Hit"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="#77AA99"
+                        android:id="@+id/detail_bgo_hit_label" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="0"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="#77CCBB"
+                        android:id="@+id/detail_bgo_hit" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight=".50"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginRight="2dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Block"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="#77AA99"
+                        android:id="@+id/detail_bgo_block_label" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="0"
+                        android:gravity="center"
+                        android:textColor="@android:color/black"
+                        android:background="#77CCBB"
+                        android:id="@+id/detail_bgo_block" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
-
-<!--
-
-	public String name;
-	public String motion;
-	public String startup;
-	public String hit;
-	public String recovery;
-	public String block_advantage;
-	public CancelableSDO cancel;
-	public ParrySDO parry;
-	public String throw_range;
-	public String damage;
-	public String stun;
--->

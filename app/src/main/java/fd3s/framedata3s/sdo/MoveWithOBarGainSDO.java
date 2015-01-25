@@ -5,6 +5,6 @@ package fd3s.framedata3s.sdo;
  *
  * Simple POJO to store the properties of a move.
  */
-public class NormalSDO extends NormalTypeSDO{
-	public BarGainSelfSDO bar_gain_self;
+public class MoveWithOBarGainSDO extends MoveSDO{
+    public BarGainOppSDO bar_gain_opp;
 }

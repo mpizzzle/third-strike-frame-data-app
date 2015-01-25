@@ -17,55 +17,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".moves.ShowDataCategoriesActivity"
+            android:name=".moves.ShowMoveCategoriesActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.normals.ShowNormalsActivity"
+            android:name=".moves.ShowMoveListActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.normals.ShowNormalDetailActivity"
+            android:name=".moves.ShowMoveDetailActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.specials.ShowSpecialsActivity"
+            android:name=".moves.ShowOthersActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.specials.ShowSpecialsDetailActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.supers.ShowSupersActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.supers.ShowSuperDetailActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.others.ShowOthersActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.gjnormals.ShowGeneiJinNormalsActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.gjnormals.ShowGeneiJinNormalDetailActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.gjspecials.ShowGeneiJinSpecialsActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".moves.gjspecials.ShowGeneiJinSpecialsDetailActivity"
-            android:label="@string/title_activity_character" >
-        </activity>
-        <activity
-            android:name=".preference.UserSettingActivity"
+            android:name=".appmenu.UserSettingActivity"
             android:label="@string/preference_attributes" >
         </activity>
     </application>

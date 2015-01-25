@@ -59,7 +59,7 @@ public class FrameDataProvider {
         FrameDataProvider.context = context.getApplicationContext();
     }
 
-    public FrameHitBoxData getMoveFrame(CharSDO charSDO, int charId, ResourceIds type, int moveId, int frameId){
+    public FrameHitBoxData getMoveFrame(CharSDO charSDO, int charId, ResourceHelper.ListIds type, int moveId, int frameId){
         int properId = moveId+1;
         int typeId = 0;
         switch (type) {

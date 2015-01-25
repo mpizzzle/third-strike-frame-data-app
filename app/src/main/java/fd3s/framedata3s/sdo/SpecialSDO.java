@@ -5,18 +5,7 @@ package fd3s.framedata3s.sdo;
  * 
  * Simple POJO for properties of a special move.
  */
-public class SpecialSDO{
-	public String name;
+public class SpecialSDO extends MoveWithOBarGainSDO{
 	public String motion;
-	public String startup;
-	public String hit;
-	public String recovery;
-	public String block_advantage;
-	public CancelableSDO cancel;
-	public ParrySDO parry;
-	public String throw_range;
-	public String damage;
-	public String stun;
 	public BarGainSelfSDO bar_gain_self;
-	public BarGainOppSDO bar_gain_opp;
 }

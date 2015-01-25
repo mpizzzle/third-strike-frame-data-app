@@ -1,4 +1,4 @@
-package fd3s.framedata3s.moves.gjnormals;
+package fd3s.framedata3s.moves;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,10 +17,11 @@ import fd3s.framedata3s.R;
 import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
 import fd3s.framedata3s.sdo.CharSDO;
 import fd3s.framedata3s.utils.CharDataProvider;
+import fd3s.framedata3s.utils.MenuHandler;
 import fd3s.framedata3s.utils.ResourceHelper;
 
-public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
-    private ShowGeneiJinNormalsActivity ref = this;
+public class ShowMoveListActivity extends ActionBarActivity {
+    private ShowMoveListActivity ref = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,23 +29,23 @@ public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_character);
 
         final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        final int listId = getIntent().getIntExtra(ResourceHelper.ResourceIds.LIST_ID.name(), 0);
+        final ResourceHelper.ListIds listType = ResourceHelper.ListIds.values()[listId];
+
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
         CharSDO charSDO = CharDataProvider.getInstance(characterId, this).getCharSDO();
 
         TextView tv = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);
 
-        tv.setText("Genei Jin Normals");
+        tv.setText(listType.getTitle());
         ivCharImage.setImageResource(ResourceHelper.ThumbIds[characterId]);
 
         if (charSDO != null) {
 
             final ListView lvMoves = (ListView) findViewById(R.id.move_names);
-            ArrayList<String> aMoveNames = new ArrayList<String>();
 
-            for(int i = 0; i < charSDO.genei_jin_normals.size(); i++){
-                aMoveNames.add(charSDO.genei_jin_normals.get(i).name);
-            }
+            ArrayList<String> aMoveNames = getMoveListItems(listType, charSDO);
 
             AlternatingColorListViewAdapter adapter = new AlternatingColorListViewAdapter(this,
                     R.layout.move_layout, aMoveNames);
@@ -53,15 +54,11 @@ public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
 
             lvMoves.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    Intent myIntent = new Intent(ref, ShowGeneiJinNormalDetailActivity.class);
+                    Intent myIntent = new Intent(ref, ShowMoveDetailActivity.class);
                     myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), characterId);
-                    myIntent.putExtra(ResourceHelper.ResourceIds.GJ_NORMAL_ID.name(), position);
+                    myIntent.putExtra(ResourceHelper.ResourceIds.LIST_ID.name(), listId);
+                    myIntent.putExtra(listType.name(), position);
                     startActivity(myIntent);
-                    /*
-                    String  itemValue    = (String) lvMoves.getItemAtPosition(position);
-                    Toast.makeText(getApplicationContext(),
-                    "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
-                    */
                 }
             });
         }
@@ -81,11 +78,44 @@ public class ShowGeneiJinNormalsActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (MenuHandler.onOptionsItemSelected(this, id)) {
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private ArrayList<String> getMoveListItems(ResourceHelper.ListIds listType, CharSDO charSDO){
+        ArrayList<String> aMoveNames = new ArrayList<>();
+        switch(listType){
+            case NORMAL_ID:
+                for(int i = 0; i < charSDO.normals.size(); i++){
+                    aMoveNames.add(charSDO.normals.get(i).name);
+                }
+                return aMoveNames;
+            case SPECIAL_ID:
+                for(int i = 0; i < charSDO.specials.size(); i++){
+                    aMoveNames.add(charSDO.specials.get(i).name);
+                }
+                return aMoveNames;
+            case SUPER_ID:
+                for(int i = 0; i < charSDO.supers.size(); i++){
+                    aMoveNames.add(charSDO.supers.get(i).name);
+                }
+                return aMoveNames;
+            case OTHER_ID:
+                throw new UnsupportedOperationException("Other ID is not supported with this activity.");
+            case GJ_NORMAL_ID:
+                for(int i = 0; i < charSDO.genei_jin_normals.size(); i++){
+                    aMoveNames.add(charSDO.genei_jin_normals.get(i).name);
+                }
+                return aMoveNames;
+            case GJ_SPECIAL_ID:
+                for(int i = 0; i < charSDO.genei_jin_specials.size(); i++){
+                    aMoveNames.add(charSDO.genei_jin_specials.get(i).name);
+                }
+                return aMoveNames;
+        }
+        return aMoveNames;
     }
 }

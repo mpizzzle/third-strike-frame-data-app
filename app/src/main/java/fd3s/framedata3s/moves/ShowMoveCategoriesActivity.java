@@ -1,4 +1,4 @@
-package fd3s.framedata3s.moves.specials;
+package fd3s.framedata3s.moves;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,51 +17,61 @@ import fd3s.framedata3s.R;
 import fd3s.framedata3s.adapters.AlternatingColorListViewAdapter;
 import fd3s.framedata3s.sdo.CharSDO;
 import fd3s.framedata3s.utils.CharDataProvider;
+import fd3s.framedata3s.utils.MenuHandler;
 import fd3s.framedata3s.utils.ResourceHelper;
+import fd3s.framedata3s.utils.ResourceHelper.ListIds;
+import fd3s.framedata3s.utils.ResourceHelper.ResourceIds;
 
-public class ShowSpecialsActivity extends ActionBarActivity {
-    private ShowSpecialsActivity ref = this;
+public class ShowMoveCategoriesActivity extends ActionBarActivity {
+    private ShowMoveCategoriesActivity ref = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_character);
 
-        final int characterId = getIntent().getIntExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), 0);
+        final int characterId = getIntent().getIntExtra(ResourceIds.CHARACTER_ID.name(), 0);
         this.setTitle(ResourceHelper.CharacterNames[characterId] + " Frame Data");
         CharSDO charSDO = CharDataProvider.getInstance(characterId, this).getCharSDO();
 
-        TextView tv = (TextView)findViewById(R.id.page_heading);
+        TextView tvCharName = (TextView)findViewById(R.id.page_heading);
         ImageView ivCharImage = (ImageView)findViewById(R.id.char_image);
 
-        tv.setText("Specials");
+        tvCharName.setText(ResourceHelper.CharacterNames[characterId]);
         ivCharImage.setImageResource(ResourceHelper.ThumbIds[characterId]);
 
         if (charSDO != null) {
 
             final ListView lvMoves = (ListView) findViewById(R.id.move_names);
-            ArrayList<String> aMoveNames = new ArrayList<String>();
+            ArrayList<String> aMoveTypes = new ArrayList<String>();
 
-            for(int i = 0; i < charSDO.specials.size(); i++){
-                aMoveNames.add(charSDO.specials.get(i).name);
+            aMoveTypes.add(ListIds.values()[0].getTitle());
+            aMoveTypes.add(ListIds.values()[1].getTitle());
+            aMoveTypes.add(ListIds.values()[2].getTitle());
+            aMoveTypes.add(ListIds.values()[3].getTitle());
+            if(ResourceHelper.CharacterNames[characterId].equals("Yun")){
+                aMoveTypes.add(ListIds.values()[4].getTitle());
+                aMoveTypes.add(ListIds.values()[5].getTitle());
             }
 
             AlternatingColorListViewAdapter adapter = new AlternatingColorListViewAdapter(this,
-                    R.layout.move_layout, aMoveNames);
+                    R.layout.move_layout, aMoveTypes);
 
             lvMoves.setAdapter(adapter);
 
             lvMoves.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                    Intent myIntent = new Intent(ref, ShowSpecialsDetailActivity.class);
-                    myIntent.putExtra(ResourceHelper.ResourceIds.SPECIAL_ID.name(), position);
-                    myIntent.putExtra(ResourceHelper.ResourceIds.CHARACTER_ID.name(), characterId);
+                    Intent myIntent;
+
+                    if(ListIds.values()[position].getTitle().equals(ListIds.OTHER_ID.getTitle())){
+                        myIntent = new Intent(ref, ShowOthersActivity.class);
+                    }else{
+                        myIntent = new Intent(ref, ShowMoveListActivity.class);
+                    }
+
+                    myIntent.putExtra(ResourceIds.CHARACTER_ID.name(), characterId);
+                    myIntent.putExtra(ResourceIds.LIST_ID.name(), position);
                     startActivity(myIntent);
-                    /*
-                    String  itemValue    = (String) lvMoves.getItemAtPosition(position);
-                    Toast.makeText(getApplicationContext(),
-                    "Position :"+position+"  ListItem : " +itemValue , Toast.LENGTH_LONG).show();
-                    */
                 }
             });
         }
@@ -81,8 +91,7 @@ public class ShowSpecialsActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (MenuHandler.onOptionsItemSelected(this, id)) {
             return true;
         }
 

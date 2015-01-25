@@ -1,13 +1,10 @@
-package fd3s.framedata3s.preference;
+package fd3s.framedata3s.appmenu;
 
 import android.annotation.TargetApi;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 import android.widget.Button;
-
-import java.util.List;
 
 import fd3s.framedata3s.R;
 

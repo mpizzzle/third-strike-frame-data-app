@@ -37,12 +37,19 @@ public class ResourceHelper {
 
     public static enum ResourceIds {
         CHARACTER_ID,
-        NORMAL_ID,
-        SPECIAL_ID,
-        SUPER_ID,
-        OTHER_ID,
-        GJ_NORMAL_ID,
-        GJ_SPECIAL_ID
+        LIST_ID
+    }
+
+    public static enum ListIds {
+        NORMAL_ID("Normals"),
+        SPECIAL_ID("Specials"),
+        SUPER_ID("Supers"),
+        OTHER_ID("Others"),
+        GJ_NORMAL_ID("GJ Normals"),
+        GJ_SPECIAL_ID("GJ Specials");
+        private String title;
+        public String getTitle(){return title;}
+        private ListIds(String title){this.title = title;}
     }
 
     public static final String SelectScreenTitle = "SF3:3S Frame Data";

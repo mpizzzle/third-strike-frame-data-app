@@ -1,4 +1,4 @@
-package fd3s.framedata3s.moves.others;
+package fd3s.framedata3s.moves;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,6 +17,7 @@ import java.util.Map;
 import fd3s.framedata3s.R;
 import fd3s.framedata3s.sdo.CharSDO;
 import fd3s.framedata3s.utils.CharDataProvider;
+import fd3s.framedata3s.utils.MenuHandler;
 import fd3s.framedata3s.utils.ResourceHelper;
 
 public class ShowOthersActivity extends ActionBarActivity {
@@ -91,8 +92,7 @@ public class ShowOthersActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (MenuHandler.onOptionsItemSelected(this, id)) {
             return true;
         }
 

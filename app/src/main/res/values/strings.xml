@@ -9,4 +9,9 @@
     <string name="title_wifi_only">Download only on WiFi</string>
     <string name="summary_wifi_only">Download hit box data while only connected to a WiFi network.</string>
     <string name="pref_data_setting">Data</string>
+    <string name="btn_first"><![CDATA[<<]]></string>
+    <string name="btn_prev"><![CDATA[<]]></string>
+    <string name="btn_play"><![CDATA[|>]]></string>
+    <string name="btn_next"><![CDATA[>]]></string>
+    <string name="btn_last"><![CDATA[>>]]></string>
 </resources>
