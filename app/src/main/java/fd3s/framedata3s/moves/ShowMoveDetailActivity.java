@@ -2,9 +2,11 @@ package fd3s.framedata3s.moves;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,6 +14,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import fd3s.framedata3s.R;
 import fd3s.framedata3s.sdo.CharSDO;
@@ -26,6 +36,7 @@ import fd3s.framedata3s.sdo.SuperSDO;
 import fd3s.framedata3s.utils.CharDataProvider;
 import fd3s.framedata3s.utils.FrameDataProvider;
 import fd3s.framedata3s.utils.MenuHandler;
+import fd3s.framedata3s.views.HitBoxImageView;
 
 import static fd3s.framedata3s.R.layout.*;
 import static fd3s.framedata3s.utils.ResourceHelper.*;
@@ -74,10 +85,11 @@ public class ShowMoveDetailActivity extends ActionBarActivity {
                     @Override
                     protected void onPostExecute(Void result){
                         TextView stv = (TextView)findViewById(R.id.sprite_heading);
-                        ImageView ivSpriteImage = (ImageView)findViewById(R.id.sprite_image);
+                        HitBoxImageView ivSpriteImage = (HitBoxImageView)findViewById(R.id.sprite_image);
                         int cutOff = frame.json.length() > 10 ? 10 : frame.json.length();
                         stv.setText(frame.json.substring(0,cutOff));
                         ivSpriteImage.setImageDrawable(frame.sprite);
+                        ivSpriteImage.setImageViewHitboxes(frame.json);
                     }
                 }.execute();
                 displayMotion(listType, moveSDO);
@@ -323,10 +335,11 @@ public class ShowMoveDetailActivity extends ActionBarActivity {
                     @Override
                     protected void onPostExecute(Void result){
                         TextView stv = (TextView)findViewById(R.id.sprite_heading);
-                        ImageView ivSpriteImage = (ImageView)findViewById(R.id.sprite_image);
+                        HitBoxImageView ivSpriteImage = (HitBoxImageView)findViewById(R.id.sprite_image);
                         int cutOff = frame.json.length() > 10 ? 10 : frame.json.length();
                         stv.setText(frame.json.substring(0,cutOff));
                         ivSpriteImage.setImageDrawable(frame.sprite);
+                        ivSpriteImage.setImageViewHitboxes(frame.json);
                     }
                 }.execute();
             }

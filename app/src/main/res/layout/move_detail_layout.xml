@@ -74,13 +74,15 @@
                 android:orientation="vertical"
                 android:layout_marginBottom="2dp">
 
-                <ImageView
+                <fd3s.framedata3s.views.HitBoxImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:minHeight="448px"
-                    android:minWidth="384px"
+                    android:scaleType="fitXY"
+                    android:adjustViewBounds="true"
                     android:id="@+id/sprite_image" />
+
+                <!---->
 
                 <TextView
                     android:layout_width="fill_parent"
