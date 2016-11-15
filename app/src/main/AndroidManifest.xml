@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="fd3s.framedata3s" >
+    package="fd3s.framedata" >
 
     android:allowBackup="true"
     <application
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SelectScreenActivity"
+            android:name="fd3s.framedata.SelectScreenActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,23 +17,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".moves.ShowMoveCategoriesActivity"
+            android:name="fd3s.framedata.moves.ShowMoveCategoriesActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.ShowMoveListActivity"
+            android:name="fd3s.framedata.moves.ShowMoveListActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.ShowMoveDetailActivity"
+            android:name="fd3s.framedata.moves.ShowMoveDetailActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".moves.ShowOthersActivity"
+            android:name="fd3s.framedata.moves.ShowOthersActivity"
             android:label="@string/title_activity_character" >
         </activity>
         <activity
-            android:name=".appmenu.UserSettingActivity"
+            android:name="fd3s.framedata.appmenu.UserSettingActivity"
             android:label="@string/preference_attributes" >
         </activity>
     </application>
