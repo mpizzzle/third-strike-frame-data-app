@@ -76,7 +76,7 @@ public class ShowMoveDetailActivity extends ActionBarActivity {
                         TextView stv = (TextView)findViewById(R.id.sprite_heading);
                         HitBoxImageView ivSpriteImage = (HitBoxImageView)findViewById(R.id.sprite_image);
                         int cutOff = frame.json.length() > 10 ? 10 : frame.json.length();
-                        stv.setText(frame.json.substring(0,cutOff));
+                        stv.setText(frame.json.substring(cutOff, cutOff + 3));
                         ivSpriteImage.setImageDrawable(frame.sprite);
                         ivSpriteImage.setImageViewHitboxes(frame.json);
                     }
@@ -326,7 +326,7 @@ public class ShowMoveDetailActivity extends ActionBarActivity {
                         TextView stv = (TextView)findViewById(R.id.sprite_heading);
                         HitBoxImageView ivSpriteImage = (HitBoxImageView)findViewById(R.id.sprite_image);
                         int cutOff = frame.json.length() > 10 ? 10 : frame.json.length();
-                        stv.setText(frame.json.substring(0,cutOff));
+                        stv.setText(frame.json.substring(cutOff, cutOff + 3));
                         ivSpriteImage.setImageDrawable(frame.sprite);
                         ivSpriteImage.setImageViewHitboxes(frame.json);
                     }

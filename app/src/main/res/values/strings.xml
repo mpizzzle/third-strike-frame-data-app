@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">FrameData3S</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +13,32 @@
     <string name="btn_play"><![CDATA[|>]]></string>
     <string name="btn_next"><![CDATA[>]]></string>
     <string name="btn_last"><![CDATA[>>]]></string>
+    <string name="move_name">Name</string>
+    <string name="move_motion">Motion</string>
+    <string name="move_detail">detail</string>
+    <string name="beta">Beta sprite (showing first active frame)</string>
+    <string name="frame_details">Frame details</string>
+    <string name="move_startup">Startup</string>
+    <string name="move_active">Active</string>
+    <string name="move_recovery">Recovery</string>
+    <string name="move_block_advantage">Block Advantage</string>
+    <string name="move_hit_advantage">Hit Advantage</string>
+    <string name="move_crouch_hit_advantage">Crouch Hit Advantage</string>
+    <string name="move_cancels_into">Cancels into</string>
+    <string name="move_cancel_su">SU</string>
+    <string name="move_cancel_sp">SP</string>
+    <string name="move_cancel_se">SE</string>
+    <string name="move_cancel_ch">CH</string>
+    <string name="move_cancel_da">DA</string>
+    <string name="move_cancel_sj">SJ</string>
+    <string name="parry">Parry</string>
+    <string name="parry_high">High</string>
+    <string name="parry_low">Low</string>
+    <string name="move_other_info">Other Info</string>
+    <string name="move_meter_gain_self">Meter Gain (Self)</string>
+    <string name="move_meter_gain_opponent">Meter Gain (Opponent)</string>
+    <string name="move_whiff">Whiff</string>
+    <string name="move_hit">Hit</string>
+    <string name="move_block">Block</string>
+    <string name="move_default">0</string>
 </resources>
