@@ -27,7 +27,8 @@ import java.util.Map;
 public class HitBoxImageView extends ImageView {
 
     private Map<Paint,List<Rect>> hitboxes = Collections.EMPTY_MAP;
-    private double scale = 1;
+    private double scaleWidth = 1;
+    private double scaleHeight = 1;
 
     public HitBoxImageView(Context context) {
         super(context);
@@ -49,15 +50,15 @@ public class HitBoxImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        scale = getWidth()/384.0;//TODO: Fix this. :(
+        scaleWidth = getWidth() / 384.0;
+        scaleHeight = getHeight() / 224.0;
         for (Map.Entry<Paint, List<Rect>> entry : hitboxes.entrySet()) {
             for(Rect hitbox : entry.getValue()){
-                canvas.drawRect((int) Math.ceil(hitbox.left * scale),
-                        (int) Math.ceil(hitbox.top * scale),
-                        (int) Math.ceil(hitbox.right * scale),
-                        (int) Math.ceil(hitbox.bottom * scale),
+                canvas.drawRect((int) Math.ceil(hitbox.left * scaleWidth),
+                        (int) Math.ceil(hitbox.top * scaleHeight),
+                        (int) Math.ceil(hitbox.right * scaleWidth),
+                        (int) Math.ceil(hitbox.bottom * scaleHeight),
                         entry.getKey());
-                //Log.i("HitBoxImageView", "Drew a rectange : " + hitbox.flattenToString());
             }
         }
     }

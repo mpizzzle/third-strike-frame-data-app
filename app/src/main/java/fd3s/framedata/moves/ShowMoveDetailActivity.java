@@ -62,7 +62,8 @@ public class ShowMoveDetailActivity extends ActionBarActivity {
         if (charSDO != null) {
             MoveSDO moveSDO = getMoveSDO(charSDO, listType, moveId);
             if(moveSDO != null){
-                final int firstActiveFrame = getNumber(moveSDO.startup)+1;
+                final int firstActiveFrame = getNumber(moveSDO.startup) + ((moveSDO instanceof SuperSDO) ? 52 : 1);
+                frameId = firstActiveFrame;
                 new AsyncTask<Void, Void, Void>(){
                     private FrameHitBoxData frame;
                     @Override
